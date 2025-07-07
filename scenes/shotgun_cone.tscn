@@ -1,43 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://on2tbyvmefa"]
+[gd_scene load_steps=4 format=3 uid="uid://on2tbyvmefa"]
 
-[ext_resource type="Texture2D" uid="uid://cta2vyp7elr1v" path="res://assets/sprites/shooting-cone.png" id="1_g3j4s"]
-[ext_resource type="Script" uid="uid://8guwx2xrmp6k" path="res://scenes/ShotgunCone.cs" id="1_jf5bl"]
+[ext_resource type="Script" uid="uid://8guwx2xrmp6k" path="res://scripts/ShotgunCone.cs" id="1_jf5bl"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jf5bl"]
-atlas = ExtResource("1_g3j4s")
-region = Rect2(0, 0, 64, 256)
+[sub_resource type="Animation" id="Animation_g3j4s"]
+resource_name = "shoot"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y8ja0"]
-atlas = ExtResource("1_g3j4s")
-region = Rect2(64, 0, 64, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i21ih"]
-atlas = ExtResource("1_g3j4s")
-region = Rect2(128, 0, 64, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jb53s"]
-atlas = ExtResource("1_g3j4s")
-region = Rect2(192, 0, 64, 256)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tcvxa"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jf5bl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y8ja0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i21ih")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jb53s")
-}],
-"loop": true,
-"name": &"shoot",
-"speed": 24.0
-}]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jf5bl"]
+_data = {
+&"shoot": SubResource("Animation_g3j4s")
+}
 
 [node name="shotgun-cone" type="Area2D"]
 script = ExtResource("1_jf5bl")
@@ -47,7 +18,7 @@ metadata/_edit_group_ = true
 position = Vector2(39, -68)
 polygon = PackedVector2Array(-40, 67, -62, -168, -16, -168)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -139)
-sprite_frames = SubResource("SpriteFrames_tcvxa")
-animation = &"shoot"
+[node name="AnimatedSprite2D" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jf5bl")
+}
