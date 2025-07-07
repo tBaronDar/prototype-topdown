@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://bihhireapcitr"]
+
+[ext_resource type="Texture2D" uid="uid://cmomf8ww8vwqp" path="res://assets/sprites/player.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://bllkycxs72f2o" path="res://scripts/Player.cs" id="1_g2els"]
+[ext_resource type="PackedScene" uid="uid://on2tbyvmefa" path="res://scenes/shotgun_cone.tscn" id="3_qhqgy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tuyoq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2els")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhqgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqkch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlg0r")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
+radius = 13.0
+height = 48.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_g2els")
+ShotgunConeScene = ExtResource("3_qhqgy")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tuyoq")
+animation = &"idle"
+autoplay = "idle"
+frame = 2
+frame_progress = 0.681395
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3vyb7")
+
+[node name="gun" type="Node2D" parent="."]
+
+[node name="shotgun-cone" parent="gun" instance=ExtResource("3_qhqgy")]
