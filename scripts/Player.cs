@@ -6,11 +6,11 @@ public partial class Player : CharacterBody2D
     public const float Speed = 200.0f;
 
     [Export] public PackedScene ShotgunConeScene;
-    private Node2D gun;
+    private Gun gun;
 
     public override void _Ready()
     {
-        gun = GetNode<Node2D>("gun");
+        gun = GetNode<Gun>("gun");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -53,25 +53,7 @@ public partial class Player : CharacterBody2D
     {
         if (Input.IsActionJustPressed("fire"))
         {
-            ShootCone();
+            gun.Shoot();
         }
-    }
-
-    private void ShootCone()
-    {
-        if (ShotgunConeScene == null || gun == null)
-        {
-            GD.PrintErr("ShotgunConeScene or gun is null!");
-            return;
-        }
-
-        var coneInstance = (ShotgunCone)ShotgunConeScene.Instantiate();
-
-        GetTree().CurrentScene.AddChild(coneInstance);
-
-        Vector2 offset = new Vector2(0, -10);
-        offset = offset.Rotated(Rotation);
-        coneInstance.GlobalPosition = gun.GlobalPosition + offset;
-        coneInstance.Rotation = Rotation;
     }
 }

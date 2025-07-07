@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bihhireapcitr"]
+[gd_scene load_steps=11 format=3 uid="uid://bihhireapcitr"]
 
 [ext_resource type="Texture2D" uid="uid://cmomf8ww8vwqp" path="res://assets/sprites/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bllkycxs72f2o" path="res://scripts/Player.cs" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://on2tbyvmefa" path="res://scenes/shotgun_cone.tscn" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://c83kmsq0hiny3" path="res://scenes/Gun.cs" id="4_dqkch"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -62,5 +63,5 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3vyb7")
 
 [node name="gun" type="Node2D" parent="."]
-
-[node name="shotgun-cone" parent="gun" instance=ExtResource("3_qhqgy")]
+script = ExtResource("4_dqkch")
+ShotgunConeScene = ExtResource("3_qhqgy")
