@@ -32,7 +32,7 @@ position = Vector2(5, -4)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-5, 4)
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
