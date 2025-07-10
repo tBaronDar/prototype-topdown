@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cta2vyp7elr1v"
-path="res://.godot/imported/shooting-cone.png-f7245df24b1c434057cd479c095e17d9.ctex"
+uid="uid://d2ovdaeoqfma4"
+path="res://.godot/imported/shotgun-bullet.png-b6df19c7c1619cbcaccfc940724b1e16.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/shooting-cone.png"
-dest_files=["res://.godot/imported/shooting-cone.png-f7245df24b1c434057cd479c095e17d9.ctex"]
+source_file="res://assets/sprites/shotgun-bullet.png"
+dest_files=["res://.godot/imported/shotgun-bullet.png-b6df19c7c1619cbcaccfc940724b1e16.ctex"]
 
 [params]
 

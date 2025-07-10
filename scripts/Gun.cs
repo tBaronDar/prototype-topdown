@@ -3,25 +3,30 @@ using System;
 
 public partial class Gun : Node2D
 {
-    [Export] public PackedScene ShotgunConeScene;
+    [Export] public PackedScene ShotgunBulletScene = GD.Load<PackedScene>("res://scenes/ShotgunBullet.tscn");
+    [Export] public int PelletCount = 8;
+    [Export] public float SpreadAngle = 15f; // total spread in degrees
+    [Export] public float BulletSpeed = 600f;
 
-    public void Shoot()
+    public void FireShotgun()
     {
-        if (ShotgunConeScene == null)
+        var baseDirection = (GetGlobalMousePosition() - GlobalPosition).Normalized();
+
+        for (int i = 0; i < PelletCount; i++)
         {
-            GD.PrintErr("ShotgunConeScene is not assigned!");
-            return;
+            // Calculate random spread
+            float spread = (float)GD.RandRange(-SpreadAngle / 2f, SpreadAngle / 2f);
+            float spreadRadians = Mathf.DegToRad(spread);
+            Vector2 shotDirection = baseDirection.Rotated(spreadRadians);
+
+            // Instance bullet
+            ShotgunBullet bullet = ShotgunBulletScene.Instantiate<ShotgunBullet>();
+            bullet.Position = GlobalPosition;
+            bullet.Direction = shotDirection;
+            bullet.Speed = BulletSpeed;
+
+            GetTree().CurrentScene.AddChild(bullet);
         }
-
-        var coneInstance = (ShotgunCone)ShotgunConeScene.Instantiate();
-
-        // Add to scene
-        GetTree().CurrentScene.AddChild(coneInstance);
-
-        // Offset the cone in front of the gun
-        Vector2 offset = new Vector2(0, -10); // adjust as needed
-        offset = offset.Rotated(GlobalRotation);
-        coneInstance.GlobalPosition = GlobalPosition + offset;
-        coneInstance.Rotation = GlobalRotation;
     }
+
 }

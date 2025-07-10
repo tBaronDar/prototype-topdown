@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddmrgip4jwt8m"]
+
+[ext_resource type="Script" uid="uid://btoo0ay805y5k" path="res://scripts/ShotgunBullet.cs" id="1_onq1m"]
+[ext_resource type="Texture2D" uid="uid://d2ovdaeoqfma4" path="res://assets/sprites/shotgun-bullet.png" id="1_up58b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onq1m"]
+size = Vector2(1, 1)
+
+[node name="Node2D" type="Area2D"]
+script = ExtResource("1_onq1m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_up58b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_onq1m")
